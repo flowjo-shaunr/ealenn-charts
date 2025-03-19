@@ -40,6 +40,10 @@ helm upgrade -i ${name} ealenn/echo-server --namespace ${namespace} --force
 | application.enable.request | bool | `true` | Enable request in response |
 | application.logs.ignore.ping | bool | `false` | Don't log ping request on route `/ping` |
 | fullnameOverride | string | `""` |  |
+| hpa.enabled | bool | `false` |  |
+| hpa.maxReplicas | int | `5` |  |
+| hpa.metrics | list | `[]` |  |
+| hpa.minReplicas | int | `1` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ealen/echo-server"` | https://hub.docker.com/r/ealen/echo-server |
 | image.tag | string | `"0.6.0"` | https://github.com/Ealenn/Echo-Server/releases |
@@ -49,6 +53,7 @@ helm upgrade -i ${name} ealenn/echo-server --namespace ${namespace} --force
 | ingress.hosts[0].host | string | `"cluster.local"` |  |
 | ingress.hosts[0].paths[0] | string | `"/"` |  |
 | ingress.ingressClassName | string | `""` |  |
+| ingress.pathType | string | `"ImplementationSpecific"` |  |
 | ingress.tls | list | `[]` |  |
 | livenessProbe.failureThreshold | int | `3` |  |
 | livenessProbe.httpGet.httpHeaders[0].name | string | `"x-echo-code"` |  |
