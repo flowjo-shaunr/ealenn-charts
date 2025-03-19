@@ -1,0 +1,21 @@
+{{- if .Values.hpa }}
+{{- if .Values.hpa.enabled }}
+{{- if .Values.resources.requests }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "echo-server.fullname" . }}
+  labels:
+{{ include "echo-server.labels" . | indent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "echo-server.fullname" . }}
+  minReplicas: {{ .Values.hpa.minReplicas }}
+  maxReplicas: {{ .Values.hpa.maxReplicas }}
+  metrics:
+{{- toYaml .Values.hpa.metrics | nindent 2 }}
+{{- end }}
+{{- end }}
+{{- end }}

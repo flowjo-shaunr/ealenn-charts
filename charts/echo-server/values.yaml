@@ -46,6 +46,24 @@ resources:
     cpu: 50m
     memory: 128Mi
 
+hpa:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  metrics: []
+  # - resource:
+  #     name: cpu
+  #     target:
+  #       averageUtilization: 75
+  #       type: Utilization
+  #   type: Resource
+  # - resource:
+  #     name: memory
+  #     target:
+  #       averageUtilization: 75
+  #       type: Utilization
+  #   type: Resource
+
 nodeSelector: {}
 
 tolerations: []
